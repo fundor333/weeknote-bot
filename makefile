@@ -28,4 +28,4 @@ run: ## Run the basic command
 .PHONY: run_error
 run_error: ## Run the basic command with an error in the config
 	@poetry run weeknote -config dev_config/1201/config_example_error.json
-	@rm config_example_error.json
+	@rm -rf dev_config

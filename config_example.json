@@ -1,0 +1,12 @@
+{
+  "feeds": [
+    {
+      "title": "My new post from my blog",
+      "url": "https://www.fundor333.com/index.xml"
+    },
+    {
+      "title": "My new post from my newsletter",
+      "url": "https://newsletter.digitaltearoom.com/rss/"
+    }
+  ]
+}
