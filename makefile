@@ -23,3 +23,9 @@ update: ## Update requirements
 .PHONY: run
 run: ## Run the basic command
 	@poetry run weeknote -config config_example.json
+
+
+.PHONY: run_error
+run_error: ## Run the basic command with an error in the config
+	@poetry run weeknote -config dev_config/1201/config_example_error.json
+	@rm config_example_error.json
