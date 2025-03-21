@@ -1,22 +1,15 @@
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
+
 [project]
 name = "weeknotebot"
 version = "0.1.0"
 description = "A bot for generate WeekNote for Hugo"
-authors = [{ name = "Fundor333", email = "github@fundor333.com" }]
+authors = [{name = "Fundor333", email = "github@fundor333.com"}]
 readme = "README.md"
 requires-python = ">=3.13"
-dependencies = []
-
-
-[build-system]
-requires = ["poetry-core>=2.0.0,<3.0.0"]
-build-backend = "poetry.core.masonry.api"
-[tool.poetry]
-
-[tool.poetry.group.dev.dependencies]
-pylint = "^3.3.4"
-pre-commit = "^4.1.0"
-
+dependencies = ["click (>=8.1.8,<9.0.0)"]
 
 [tool.black]
 line-length = 79
@@ -37,3 +30,12 @@ exclude = '''
 
 [tool.isort]
 profile = "black"
+
+[tool.poetry]
+
+[tool.poetry.group.dev.dependencies]
+pylint = "^3.3.4"
+pre-commit = "^4.1.0"
+
+[tool.poetry.scripts]
+weeknote = "weeknotebot.cli:cli"

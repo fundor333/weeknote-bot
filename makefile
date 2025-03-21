@@ -18,3 +18,8 @@ update: ## Update requirements
 	@poetry update
 	@poetry run pre-commit autoupdate
 	@poetry run python manage.py collectstatic --noinput
+
+
+.PHONY: run
+run: ## Run the basic command
+	@poetry run weeknote -config config_example.json

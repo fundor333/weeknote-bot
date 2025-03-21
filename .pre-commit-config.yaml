@@ -1,5 +1,10 @@
 fail_fast: true
 repos:
+    - repo: https://github.com/pappasam/toml-sort.git
+      rev: v0.24.2
+      hooks:
+          - id: toml-sort-fix
+
     - repo: https://github.com/asottile/reorder-python-imports
       rev: v3.14.0
       hooks:
