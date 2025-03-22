@@ -35,8 +35,7 @@ def get_data_meta(today) -> tuple[str, str, str]:
     return year, week, today_str
 
 
-def generate_weeknote(config: dict) -> tuple[str, str]:
-    today = datetime.datetime.now()
+def generate_weeknote(config: dict, today: datetime) -> tuple[str, str]:
     year, week, today_str = get_data_meta(today)
     weeknote = WEEKNOTE_TEMPLATE.format(
         week=week,
@@ -50,8 +49,8 @@ def generate_weeknote(config: dict) -> tuple[str, str]:
     return weeknote, file_name
 
 
-def write_weeknote(config: dict) -> None:
-    weeknote, filename = generate_weeknote(config)
+def write_weeknote(config: dict, today: datetime) -> None:
+    weeknote, filename = generate_weeknote(config, today)
     output = os.path.join(config["generator"]["output"], filename)
 
     output_file = Path(output)

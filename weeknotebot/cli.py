@@ -1,3 +1,4 @@
+import datetime
 import json
 import logging
 import os
@@ -55,13 +56,25 @@ def doesFileExists(filePathAndName):
     required=False,
     help="Path to the configuration file.",
 )
-def cli(
-    configuration: str,
-) -> None:
+@click.option(
+    "--today",
+    "-t",
+    default=None,
+    type=str,
+    required=False,
+    help="Today's date in the format YYYY/MM/DD.",
+)
+def cli(configuration: str, today: str) -> None:
+    configuration = os.path.expanduser(configuration)
+    if today is None:
+        today = datetime.datetime.now()
+    else:
+        today = datetime.datetime.strptime(today, "%Y/%m/%d")
+
     if doesFileExists(configuration):
         log.debug("Yaa I find the config")
         config = get_config_schema(configuration)
-        write_weeknote(config)
+        write_weeknote(config, today)
     else:
         log.warning("Nope! Generating a new config")
 
