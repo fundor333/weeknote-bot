@@ -6,6 +6,9 @@ from pathlib import Path
 import click
 from rich.logging import RichHandler
 
+from weeknotebot.config_manager import get_config_schema
+from weeknotebot.generator import write_weeknote
+
 LOG_LEVEL = os.environ.get("LOG_LEVEL", "INFO")
 
 
@@ -17,6 +20,7 @@ logging.basicConfig(
 log = logging.getLogger("rich")
 
 DEFAULT_CONFIG = {
+    "generator": {"tag": "week note", "output": "weeknotes/"},
     "feeds": [
         {
             "title": "My new post from my blog",
@@ -26,7 +30,15 @@ DEFAULT_CONFIG = {
             "title": "My new post from my newsletter",
             "url": "https://newsletter.digitaltearoom.com/rss/",
         },
-    ]
+    ],
+    "fix_links": [
+        {"title": "My blog", "url": "https://www.fundor333.com"},
+        {
+            "title": "My newsletter",
+            "url": "https://newsletter.digitaltearoom.com",
+        },
+        {"title": "Support me", "url": "https://ko-fi.com/fundor333"},
+    ],
 }
 
 
@@ -48,6 +60,8 @@ def cli(
 ) -> None:
     if doesFileExists(configuration):
         log.debug("Yaa I find the config")
+        config = get_config_schema(configuration)
+        write_weeknote(config)
     else:
         log.warning("Nope! Generating a new config")
 
