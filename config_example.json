@@ -1,4 +1,8 @@
 {
+  "empty_section": [
+    "Post Recommendation",
+    "Podcast Episode Recommendation"
+  ],
   "feeds": [
     {
       "title": "My new post from my blog",
