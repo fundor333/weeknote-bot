@@ -17,7 +17,6 @@ install: ## Make venv and install requirements
 update: ## Update requirements
 	@poetry update
 	@poetry run pre-commit autoupdate
-	@poetry run python manage.py collectstatic --noinput
 
 
 .PHONY: run
