@@ -27,6 +27,7 @@ DEFAULT_CONFIG = {
         "fix_links_label": "Fix Links",
         "type_weeknote": "weeknote",
     },
+    "empty_section": ["Post Recommendation", "Podcast Episode Recommendation"],
     "feeds": [
         {
             "title": "My new post from my blog",

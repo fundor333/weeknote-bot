@@ -37,6 +37,7 @@ class GeneratorSchema(Schema):
     fix_links_label = fields.Str(load_default="Fix Links")
     type_weeknote = fields.Str(load_default="weeknote")
     goodread = fields.Nested(GoodreadSchema, required=False)
+    empty_section = fields.List(fields.Str, required=False)
 
 
 class ConfigSchema(Schema):

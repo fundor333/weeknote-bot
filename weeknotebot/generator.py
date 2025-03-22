@@ -58,6 +58,9 @@ def generate_weeknote(config: dict, today: datetime) -> tuple[str, str]:
 def write_weeknote(config: dict, today: datetime) -> None:
     weeknote, filename = generate_weeknote(config, today)
 
+    for data in config["empty_section"]:
+        weeknote += f"## {data}\n\n"
+
     for data in config["feeds"]:
         weeknote += generate_feed_text(
             title=data["title"], link=data["url"], today=today
