@@ -1,5 +1,11 @@
 fail_fast: true
 repos:
+    - repo: https://github.com/tillig/json-sort-cli
+      rev: v2.0.3 # Use a version tag or SHA commit hash
+      hooks:
+          - id: json-sort
+            args:
+                - --autofix
     - repo: https://github.com/pappasam/toml-sort.git
       rev: v0.24.2
       hooks:

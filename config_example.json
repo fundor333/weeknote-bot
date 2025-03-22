@@ -1,1 +1,30 @@
-{"generator": {"tag": "week note", "output": "weeknotes/"}, "feeds": [{"title": "My new post from my blog", "url": "https://www.fundor333.com/index.xml"}, {"title": "My new post from my newsletter", "url": "https://newsletter.digitaltearoom.com/rss/"}], "fix_links": [{"title": "My blog", "url": "https://www.fundor333.com"}, {"title": "My newsletter", "url": "https://newsletter.digitaltearoom.com"}, {"title": "Support me", "url": "https://ko-fi.com/fundor333"}]}
+{
+  "feeds": [
+    {
+      "title": "My new post from my blog",
+      "url": "https://www.fundor333.com/index.xml"
+    },
+    {
+      "title": "My new post from my newsletter",
+      "url": "https://newsletter.digitaltearoom.com/rss/"
+    }
+  ],
+  "fix_links": [
+    {
+      "title": "My blog",
+      "url": "https://www.fundor333.com"
+    },
+    {
+      "title": "My newsletter",
+      "url": "https://newsletter.digitaltearoom.com"
+    },
+    {
+      "title": "Support me",
+      "url": "https://ko-fi.com/fundor333"
+    }
+  ],
+  "generator": {
+    "output": "weeknotes/",
+    "tag": "week note"
+  }
+}
