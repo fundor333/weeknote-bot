@@ -5,6 +5,9 @@ from pathlib import Path
 
 from rich.logging import RichHandler
 
+from weeknotebot.feed import generate_feed_text
+from weeknotebot.fix_links import generate_fix_text
+
 LOG_LEVEL = os.environ.get("LOG_LEVEL", "INFO")
 
 
@@ -22,6 +25,7 @@ date: "{today_str}"
 lastmod: "{today_str}"
 draft: true
 tags: ["{tag}"]
+type : "{type}"
 summary: "Random notes for week {week} of {year}"
 ---
 
@@ -42,6 +46,7 @@ def generate_weeknote(config: dict, today: datetime) -> tuple[str, str]:
         year=year,
         today_str=today_str,
         tag=config["generator"]["tag"],
+        type=config["generator"]["type_weeknote"],
     )
     file_name = f"{year}/{week}.md"
     log.debug(file_name)
@@ -51,6 +56,17 @@ def generate_weeknote(config: dict, today: datetime) -> tuple[str, str]:
 
 def write_weeknote(config: dict, today: datetime) -> None:
     weeknote, filename = generate_weeknote(config, today)
+
+    for data in config["feeds"]:
+        weeknote += generate_feed_text(
+            title=data["title"], link=data["url"], today=today
+        )
+
+    weeknote += generate_fix_text(
+        links=config["fix_links"],
+        fix_link_label=config["generator"]["fix_links_label"],
+    )
+
     output = os.path.join(config["generator"]["output"], filename)
 
     output_file = Path(output)
