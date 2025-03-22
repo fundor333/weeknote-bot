@@ -24,7 +24,9 @@
     }
   ],
   "generator": {
+    "fix_links_label": "Fix Links",
     "output": "weeknotes/",
-    "tag": "week note"
+    "tag": "week note",
+    "type_weeknote": "weeknote"
   }
 }

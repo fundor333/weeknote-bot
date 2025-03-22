@@ -21,7 +21,12 @@ logging.basicConfig(
 log = logging.getLogger("rich")
 
 DEFAULT_CONFIG = {
-    "generator": {"tag": "week note", "output": "weeknotes/"},
+    "generator": {
+        "tag": "week note",
+        "output": "weeknotes/",
+        "fix_links_label": "Fix Links",
+        "type_weeknote": "weeknote",
+    },
     "feeds": [
         {
             "title": "My new post from my blog",
@@ -78,10 +83,12 @@ def cli(configuration: str, today: str) -> None:
     else:
         log.warning("Nope! Generating a new config")
 
-        output_file = Path(configuration)
-        output_file.parent.mkdir(exist_ok=True, parents=True)
-        with open(output_file, "w") as f:
-            json.dump(DEFAULT_CONFIG, f)
+        config = DEFAULT_CONFIG
+
+    output_file = Path(configuration)
+    output_file.parent.mkdir(exist_ok=True, parents=True)
+    with open(output_file, "w") as f:
+        json.dump(config, f)
 
 
 if __name__ == "__main__":

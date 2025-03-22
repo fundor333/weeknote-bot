@@ -26,8 +26,10 @@ class LinkSchema(Schema):
 
 
 class GeneratorSchema(Schema):
-    tag = fields.Str(required=True, default="week note")
-    output = fields.Str(required=True, default="~/weeknotes/")
+    tag = fields.Str(load_default="week note")
+    output = fields.Str(load_default="~/weeknotes/")
+    fix_links_label = fields.Str(load_default="Fix Links")
+    type_weeknote = fields.Str(load_default="weeknote")
 
 
 class ConfigSchema(Schema):
