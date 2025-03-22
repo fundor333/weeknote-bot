@@ -7,6 +7,7 @@ from rich.logging import RichHandler
 
 from weeknotebot.sources.feed import generate_feed_text
 from weeknotebot.sources.fix_links import generate_fix_text
+from weeknotebot.sources.goodreads_shelf import get_books_from_shelf
 
 LOG_LEVEL = os.environ.get("LOG_LEVEL", "INFO")
 
@@ -66,6 +67,13 @@ def write_weeknote(config: dict, today: datetime) -> None:
         links=config["fix_links"],
         fix_link_label=config["generator"]["fix_links_label"],
     )
+
+    if "goodread" in config:
+        weeknote += get_books_from_shelf(
+            user_id=config["goodread"]["user_id"],
+            shelf_name_code=config["goodread"]["shelf_name_code"],
+            shelf_name_label=config["goodread"]["shelf_name_label"],
+        )
 
     output = os.path.join(config["generator"]["output"], filename)
 

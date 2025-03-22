@@ -28,5 +28,10 @@
     "output": "weeknotes/",
     "tag": "week note",
     "type_weeknote": "weeknote"
+  },
+  "goodread": {
+    "shelf_name_code": "currently-reading",
+    "shelf_name_label": "Currently Reading",
+    "user_id": "5312887-matteo"
   }
 }

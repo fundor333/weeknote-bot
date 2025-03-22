@@ -45,6 +45,11 @@ DEFAULT_CONFIG = {
         },
         {"title": "Support me", "url": "https://ko-fi.com/fundor333"},
     ],
+    "goodread": {
+        "user_id": "5312887-matteo",
+        "shelf_name_code": "currently-reading",
+        "shelf_name_label": "Currently Reading",
+    },
 }
 
 

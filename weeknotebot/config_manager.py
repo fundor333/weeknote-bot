@@ -25,11 +25,18 @@ class LinkSchema(Schema):
     title = fields.Str(required=True)
 
 
+class GoodreadSchema(Schema):
+    user_id = fields.Str(required=True)
+    shelf_name_code = fields.Str(required=True)
+    shelf_name_label = fields.Str(required=True)
+
+
 class GeneratorSchema(Schema):
     tag = fields.Str(load_default="week note")
     output = fields.Str(load_default="~/weeknotes/")
     fix_links_label = fields.Str(load_default="Fix Links")
     type_weeknote = fields.Str(load_default="weeknote")
+    goodread = fields.Nested(GoodreadSchema, required=False)
 
 
 class ConfigSchema(Schema):
