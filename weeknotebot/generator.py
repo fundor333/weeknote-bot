@@ -5,8 +5,8 @@ from pathlib import Path
 
 from rich.logging import RichHandler
 
-from weeknotebot.feed import generate_feed_text
-from weeknotebot.fix_links import generate_fix_text
+from weeknotebot.sources.feed import generate_feed_text
+from weeknotebot.sources.fix_links import generate_fix_text
 
 LOG_LEVEL = os.environ.get("LOG_LEVEL", "INFO")
 
