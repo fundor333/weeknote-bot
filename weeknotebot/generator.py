@@ -22,8 +22,8 @@ log = logging.getLogger("rich")
 
 WEEKNOTE_TEMPLATE = """---
 title: "Week Note Nº {week}/{year}"
-date: "{today_str}"
-lastmod: "{today_str}"
+date: "{today_str}T09:00:00+01:00"
+lastmod: "{today_str}T09:00:00+01:00"
 draft: true
 tags: ["{tag}"]
 type : "{type}"
