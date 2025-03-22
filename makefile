@@ -34,3 +34,4 @@ run_error: ## Run the basic command with an error in the config
 clean: ## Clean the project of the test stuff
 	@rm -rf dev_config || true
 	@rm -rf weeknotes || true
+	@rm -rf dist || true
