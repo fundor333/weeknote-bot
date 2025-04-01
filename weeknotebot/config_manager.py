@@ -42,7 +42,6 @@ class GeneratorSchema(Schema):
 
 class AnilistSchema(Schema):
     user_id = fields.Str(required=True)
-    num_category = fields.Int(required=True)
 
 
 class ConfigSchema(Schema):

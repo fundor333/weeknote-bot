@@ -53,7 +53,6 @@ DEFAULT_CONFIG = {
     },
     "anilist": {
         "user_id": "fundor333",
-        "num_category": 3,
     },
 }
 

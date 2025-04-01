@@ -82,7 +82,6 @@ def write_weeknote(config: dict, today: datetime) -> None:
     if "anilist" in config:
         weeknote += get_anilist_row(
             user_id=config["anilist"]["user_id"],
-            num_category=config["anilist"]["num_category"],
         )
 
     output = os.path.join(config["generator"]["output"], filename)
