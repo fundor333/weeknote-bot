@@ -51,6 +51,10 @@ DEFAULT_CONFIG = {
         "shelf_name_code": "currently-reading",
         "shelf_name_label": "Currently Reading",
     },
+    "anilist": {
+        "user_id": "fundor333",
+        "num_category": 3,
+    },
 }
 
 
