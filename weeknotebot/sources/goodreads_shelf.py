@@ -15,5 +15,6 @@ def get_books_from_shelf(user_id, shelf_name_code, shelf_name_label):
         output_str += f"\n## {shelf_name_label}\n"
         for element in output:
             output_str += element
+        output_str += "\n"
 
     return output_str

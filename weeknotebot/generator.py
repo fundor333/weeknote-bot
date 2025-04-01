@@ -5,6 +5,7 @@ from pathlib import Path
 
 from rich.logging import RichHandler
 
+from weeknotebot.sources.anilist_stats import get_anilist_row
 from weeknotebot.sources.feed import generate_feed_text
 from weeknotebot.sources.fix_links import generate_fix_text
 from weeknotebot.sources.goodreads_shelf import get_books_from_shelf
@@ -76,6 +77,11 @@ def write_weeknote(config: dict, today: datetime) -> None:
             user_id=config["goodread"]["user_id"],
             shelf_name_code=config["goodread"]["shelf_name_code"],
             shelf_name_label=config["goodread"]["shelf_name_label"],
+        )
+
+    if "anilist" in config:
+        weeknote += get_anilist_row(
+            user_id=config["anilist"]["user_id"],
         )
 
     output = os.path.join(config["generator"]["output"], filename)

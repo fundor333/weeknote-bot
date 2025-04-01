@@ -40,10 +40,17 @@ class GeneratorSchema(Schema):
     empty_section = fields.List(fields.Str, required=False)
 
 
+class AnilistSchema(Schema):
+    user_id = fields.Str(required=True)
+
+
 class ConfigSchema(Schema):
     feeds = fields.List(fields.Nested(LinkSchema), required=True)
     fix_links = fields.List(fields.Nested(LinkSchema), required=True)
     generator = fields.Nested(GeneratorSchema, required=True)
+    anilist = fields.Nested(AnilistSchema, required=False)
+    goodread = fields.Nested(GoodreadSchema, required=False)
+    empty_section = fields.List(fields.Str, required=False)
 
     class Meta:
         # Include unknown fields in the deserialized output
