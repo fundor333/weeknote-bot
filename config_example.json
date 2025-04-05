@@ -40,5 +40,6 @@
     "shelf_name_code": "currently-reading",
     "shelf_name_label": "Currently Reading",
     "user_id": "5312887-matteo"
-  }
+  },
+  "text_api": "https://appletune.fundor333.com/api/weekdone/?format=json"
 }
