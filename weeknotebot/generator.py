@@ -9,6 +9,7 @@ from weeknotebot.sources.anilist_stats import get_anilist_row
 from weeknotebot.sources.feed import generate_feed_text
 from weeknotebot.sources.fix_links import generate_fix_text
 from weeknotebot.sources.goodreads_shelf import get_books_from_shelf
+from weeknotebot.sources.text_api import generate_tex_api
 
 LOG_LEVEL = os.environ.get("LOG_LEVEL", "INFO")
 
@@ -58,6 +59,9 @@ def generate_weeknote(config: dict, today: datetime) -> tuple[str, str]:
 
 def write_weeknote(config: dict, today: datetime) -> None:
     weeknote, filename = generate_weeknote(config, today)
+
+    if config.get("text_api"):
+        weeknote += generate_tex_api(config["text_api"])
 
     for data in config.get("empty_section", []):
         weeknote += f"## {data}\n\n"

@@ -18,7 +18,7 @@ log = logging.getLogger("rich")
 
 def generate_feed_text(title: str, link: str, today: datetime) -> str:
     flag = False
-    output = f"""\n## {title}\n"""
+    output = f"""## {title}\n"""
     log.debug(f"Checking {title} feed")
     for element_link in feedparser.parse(link).entries:
         log.debug(f"Checking {element_link.title}")
