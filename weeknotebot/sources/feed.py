@@ -25,7 +25,7 @@ def generate_feed_text(title: str, link: str, today: datetime) -> str:
         log.debug(f"Checking {element_link.link}")
         log.debug(f"Checking {element_link.published_parsed}")
         if (
-            today.date() - datetime.timedelta(days=6)
+            today.date() - datetime.timedelta(days=7)
             < datetime.datetime(*element_link.published_parsed[:6]).date()
         ):
             flag = True
