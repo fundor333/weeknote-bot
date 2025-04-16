@@ -26,10 +26,10 @@ WEEKNOTE_TEMPLATE = """---
 title: "Week Note Nº {week}/{year}"
 date: "{today_str}T09:00:00+01:00"
 lastmod: "{today_str}T09:00:00+01:00"
-draft: true
 tags: ["{tag}"]
 type : "{type}"
 summary: "Random notes for week {week} of {year}"
+draft: {draft}
 ---
 
 """
@@ -50,6 +50,7 @@ def generate_weeknote(config: dict, today: datetime) -> tuple[str, str]:
         today_str=today_str,
         tag=config["generator"]["tag"],
         type=config["generator"]["type_weeknote"],
+        draft=config["generator"].get("draft", True),
     )
     file_name = f"{year}/{week}.md"
     log.debug(file_name)
