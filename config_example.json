@@ -8,6 +8,10 @@
   ],
   "feeds": [
     {
+      "title": "Suggested Links/Posts",
+      "url": "https://appletune.fundor333.com/api/feed/"
+    },
+    {
       "title": "My new post from my blog",
       "url": "https://www.fundor333.com/index.xml"
     },
@@ -31,6 +35,7 @@
     }
   ],
   "generator": {
+    "draft": false,
     "fix_links_label": "Fix Links",
     "output": "weeknotes/",
     "tag": "week note",

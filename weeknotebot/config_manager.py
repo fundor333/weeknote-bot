@@ -38,6 +38,7 @@ class GeneratorSchema(Schema):
     type_weeknote = fields.Str(load_default="weeknote")
     goodread = fields.Nested(GoodreadSchema, required=False)
     empty_section = fields.List(fields.Str, required=False)
+    draft = fields.Bool(load_default=True)
 
 
 class AnilistSchema(Schema):
