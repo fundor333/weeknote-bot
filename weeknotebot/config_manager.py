@@ -23,6 +23,7 @@ log = logging.getLogger("rich")
 class LinkSchema(Schema):
     url = fields.URL(required=True)
     title = fields.Str(required=True)
+    utm_source = fields.Str(load_default="fundor333.com")
 
 
 class GoodreadSchema(Schema):
