@@ -9,29 +9,35 @@
   "feeds": [
     {
       "title": "Suggested Links/Posts",
-      "url": "https://appletune.fundor333.com/api/feed/"
+      "url": "https://appletune.fundor333.com/api/feed/",
+      "utm_source": "fundor333.com"
     },
     {
       "title": "My new post from my blog",
-      "url": "https://www.fundor333.com/index.xml"
+      "url": "https://www.fundor333.com/index.xml",
+      "utm_source": "fundor333.com"
     },
     {
       "title": "My new post from my newsletter",
-      "url": "https://newsletter.digitaltearoom.com/rss/"
+      "url": "https://newsletter.digitaltearoom.com/rss/",
+      "utm_source": "fundor333.com"
     }
   ],
   "fix_links": [
     {
       "title": "My blog",
-      "url": "https://www.fundor333.com"
+      "url": "https://www.fundor333.com",
+      "utm_source": ""
     },
     {
       "title": "My newsletter",
-      "url": "https://newsletter.digitaltearoom.com"
+      "url": "https://newsletter.digitaltearoom.com",
+      "utm_source": ""
     },
     {
       "title": "Support me",
-      "url": "https://ko-fi.com/fundor333"
+      "url": "https://ko-fi.com/fundor333",
+      "utm_source": ""
     }
   ],
   "generator": {

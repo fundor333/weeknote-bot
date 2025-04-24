@@ -69,7 +69,10 @@ def write_weeknote(config: dict, today: datetime) -> None:
 
     for data in config.get("feeds", []):
         weeknote += generate_feed_text(
-            title=data["title"], link=data["url"], today=today
+            title=data["title"],
+            link=data["url"],
+            today=today,
+            utm_source=data.get("utm_source"),
         )
 
     weeknote += generate_fix_text(
