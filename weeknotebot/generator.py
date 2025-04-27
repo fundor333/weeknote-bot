@@ -37,7 +37,7 @@ draft: {draft}
 
 def get_data_meta(today) -> tuple[str, str, str]:
     year = today.strftime("%Y")
-    week = today.strftime("%W")
+    week = str(int(today.strftime("%W")) + 1)
     today_str = today.strftime("%Y-%m-%d")
     return year, week, today_str
 
