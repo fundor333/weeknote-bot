@@ -52,7 +52,7 @@ def generate_weeknote(config: dict, today: datetime) -> tuple[str, str]:
         type=config["generator"]["type_weeknote"],
         draft=config["generator"].get("draft", True),
     )
-    file_name = f"{year}/{week}.md"
+    file_name = f"{year}/{week}/index.md"
     log.debug(file_name)
     log.debug(weeknote)
     return weeknote, file_name
