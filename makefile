@@ -9,24 +9,24 @@ help: ## Show this help
 .PHONY: install
 install: ## Make venv and install requirements
 	@mkdir -p .venv
-	@poetry install
-	@poetry run pre-commit install
+	@uv install
+	@uv run pre-commit install
 	@pre-commit autoupdate
 
 .PHONY: update
 update: ## Update requirements
 	@poetry update
-	@poetry run pre-commit autoupdate
+	@uv run pre-commit autoupdate
 
 
 .PHONY: run
 run: ## Run the basic command
-	@poetry run weeknote -config config_example.json
+	@uv run weeknote -config config_example.json
 
 
 .PHONY: run_error
 run_error: ## Run the basic command with an error in the config
-	@poetry run weeknote -config dev_config/1201/config_example_error.json
+	@uv run weeknote -config dev_config/1201/config_example_error.json
 	@rm -rf dev_config
 
 .PHONY: clean
@@ -34,3 +34,34 @@ clean: ## Clean the project of the test stuff
 	@rm -rf dev_config || true
 	@rm -rf weeknotes || true
 	@rm -rf dist || true
+
+patch: ## Increment patch
+	@uv version --bump patch
+
+
+minor: ## Increment minor
+	@uv version --bump minor
+
+major: ## Increment major
+	@uv version --bump major
+
+alpha: ## Increment alpha
+	@uv version --bump alpha
+
+beta: ## Increment beta
+	@uv version --bump beta
+
+stable: ## Increment stable
+	@uv version --bump stable
+
+dev: ## Increment dev
+	@uv version --bump dev
+
+.PHONY: deploy
+deploy: update  ## Deploy for production
+	@uv build
+	@uv publish
+
+
+precommit: ## Run pre-commit hooks
+	@git add . & uv run pre-commit run --all-files

@@ -6,7 +6,7 @@ def get_books_from_shelf(user_id, shelf_name_code, shelf_name_label):
     output = []
     for element_link in feedparser.parse(url).entries:
         output.append(
-            f"[![{element_link.title}]({element_link.book_medium_image_url})]({element_link.link}) "
+            f"[![{element_link.title}]({element_link.book_medium_image_url})]({element_link.link})\n"
         )
 
     output_str = ""

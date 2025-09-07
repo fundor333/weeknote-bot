@@ -28,7 +28,8 @@ date: "{today_str}T09:00:00+01:00"
 lastmod: "{today_str}T09:00:00+01:00"
 tags: ["{tag}"]
 type : "{type}"
-summary: "Random notes for week {week} of {year}"
+summary: "Personal notes for week {week} of {year}"
+description: "Personal notes for week {week} of {year}"
 draft: {draft}
 ---
 
