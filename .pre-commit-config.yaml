@@ -1,7 +1,7 @@
 fail_fast: true
 repos:
     - repo: https://github.com/tillig/json-sort-cli
-      rev: v2.0.3 # Use a version tag or SHA commit hash
+      rev: v3.0.0 # Use a version tag or SHA commit hash
       hooks:
           - id: json-sort
             args:
@@ -12,11 +12,11 @@ repos:
           - id: toml-sort-fix
 
     - repo: https://github.com/asottile/reorder-python-imports
-      rev: v3.14.0
+      rev: v3.15.0
       hooks:
           - id: reorder-python-imports
     - repo: https://github.com/adamchainz/djade-pre-commit
-      rev: "1.3.2" # Replace with the latest tag on GitHub
+      rev: "1.5.0" # Replace with the latest tag on GitHub
       hooks:
           - id: djade
             args: [--target-version, "4.2"] # Replace with Django version
@@ -26,7 +26,7 @@ repos:
           - id: autoflake
             args: [--remove-all-unused-imports, --in-place]
     - repo: https://github.com/pycqa/bandit
-      rev: 1.8.3
+      rev: 1.8.6
       hooks:
           - id: bandit
             args: ["-iii", "-ll"]
@@ -36,7 +36,7 @@ repos:
           - id: black
             language_version: python3.9
     - repo: https://github.com/pre-commit/pre-commit-hooks
-      rev: v5.0.0
+      rev: v6.0.0
       hooks:
           - id: check-merge-conflict
           - id: detect-private-key
@@ -55,12 +55,12 @@ repos:
           - id: python-no-log-warn
           - id: python-use-type-annotations
     - repo: https://github.com/asottile/pyupgrade
-      rev: v3.19.1
+      rev: v3.20.0
       hooks:
           - id: pyupgrade
             args: [--py312-plus]
     - repo: https://github.com/PyCQA/flake8
-      rev: 7.2.0
+      rev: 7.3.0
       hooks:
           - id: flake8
             additional_dependencies:
