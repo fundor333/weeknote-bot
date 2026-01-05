@@ -3,10 +3,7 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [dependency-groups]
-dev = [
-  "pre-commit>=4.5.1",
-  "pylint>=4.0.4"
-]
+dev = ["pre-commit>=4.5.1", "pylint>=4.0.4"]
 
 [project]
 name = "WeeknoteBot"
@@ -55,3 +52,9 @@ include = ["weeknotebot"]
 
 [tool.isort]
 profile = "black"
+
+[[tool.uv.index]]
+name = "weeknotebot"
+url = "https://test.pypi.org/simple/"
+publish-url = "https://test.pypi.org/legacy/"
+explicit = true
