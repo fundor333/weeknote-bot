@@ -7,16 +7,16 @@ repos:
             args:
                 - --autofix
     - repo: https://github.com/pappasam/toml-sort.git
-      rev: v0.24.2
+      rev: v0.24.3
       hooks:
           - id: toml-sort-fix
 
     - repo: https://github.com/asottile/reorder-python-imports
-      rev: v3.15.0
+      rev: v3.16.0
       hooks:
           - id: reorder-python-imports
     - repo: https://github.com/adamchainz/djade-pre-commit
-      rev: "1.5.0" # Replace with the latest tag on GitHub
+      rev: "1.7.0" # Replace with the latest tag on GitHub
       hooks:
           - id: djade
             args: [--target-version, "4.2"] # Replace with Django version
@@ -26,15 +26,15 @@ repos:
           - id: autoflake
             args: [--remove-all-unused-imports, --in-place]
     - repo: https://github.com/pycqa/bandit
-      rev: 1.8.6
+      rev: 1.9.2
       hooks:
           - id: bandit
             args: ["-iii", "-ll"]
     - repo: https://github.com/psf/black
-      rev: 25.1.0
+      rev: 25.12.0
       hooks:
           - id: black
-            language_version: python3.9
+            language_version: python3.13
     - repo: https://github.com/pre-commit/pre-commit-hooks
       rev: v6.0.0
       hooks:
@@ -55,7 +55,7 @@ repos:
           - id: python-no-log-warn
           - id: python-use-type-annotations
     - repo: https://github.com/asottile/pyupgrade
-      rev: v3.20.0
+      rev: v3.21.2
       hooks:
           - id: pyupgrade
             args: [--py312-plus]

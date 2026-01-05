@@ -1,5 +1,20 @@
 SHELL := /bin/bash
 
+publish: build ## Publish to pypi
+	@echo "🚀 Publishing project"
+	@$(eval user := $(shell sed -ne 's/username *= *//p' $(HOME)/.pypirc))
+	@$(eval pass := $(shell sed -ne 's/password *= *//p' $(HOME)/.pypirc))
+	uv publish -u $(user) -p $(pass)
+
+.PHONY: build
+build: clean-build ## Build wheel file
+	@echo "🚀 Creating wheel file"
+	@uv build
+
+.PHONY: clean-build
+clean-build: ## Clean build artifacts
+	@echo "🚀 Removing build artifacts"
+	@uv run python -c "import shutil; import os; shutil.rmtree('dist') if os.path.exists('dist') else None"
 
 .PHONY: help
 help: ## Show this help
@@ -9,13 +24,14 @@ help: ## Show this help
 .PHONY: install
 install: ## Make venv and install requirements
 	@mkdir -p .venv
-	@uv install
+	@uv sync
 	@uv run pre-commit install
 	@pre-commit autoupdate
 
 .PHONY: update
 update: ## Update requirements
-	@poetry update
+	@uv lock --upgrade
+	@uv sync
 	@uv run pre-commit autoupdate
 
 
