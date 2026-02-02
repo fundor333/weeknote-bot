@@ -9,6 +9,7 @@ from weeknotebot.sources.anilist_stats import get_anilist_row
 from weeknotebot.sources.feed import generate_feed_text
 from weeknotebot.sources.fix_links import generate_fix_text
 from weeknotebot.sources.goodreads_shelf import get_books_from_shelf
+from weeknotebot.sources.hardcover_shelf import hardcover_shelf
 from weeknotebot.sources.text_api import generate_tex_api
 
 LOG_LEVEL = os.environ.get("LOG_LEVEL", "INFO")
@@ -87,6 +88,19 @@ def write_weeknote(config: dict, today: datetime) -> None:
             shelf_name_code=config["goodread"]["shelf_name_code"],
             shelf_name_label=config["goodread"]["shelf_name_label"],
         )
+
+    if "hardcover" in config and config["hardcover"].get("active", False):
+        token = os.environ.get("HARDCOVER_API_TOKEN", "")
+
+        if not token:
+            log.warning("HARDCOVER_API_TOKEN is not set")
+        else:
+            weeknote += hardcover_shelf(
+                my_token=token,
+                section_label=config["hardcover"].get(
+                    "section_label", "Books I'm reading"
+                ),
+            )
 
     if "anilist" in config:
         weeknote += get_anilist_row(

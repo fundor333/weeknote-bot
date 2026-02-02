@@ -32,6 +32,11 @@ class GoodreadSchema(Schema):
     shelf_name_label = fields.Str(required=True)
 
 
+class HardcoverSchema(Schema):
+    active = fields.Bool(load_default=False)
+    section_label = fields.Str(load_default="Books I'm reading")
+
+
 class GeneratorSchema(Schema):
     tag = fields.Str(load_default="week note")
     output = fields.Str(load_default="~/weeknotes/")
@@ -52,6 +57,7 @@ class ConfigSchema(Schema):
     generator = fields.Nested(GeneratorSchema, required=True)
     anilist = fields.Nested(AnilistSchema, required=False)
     goodread = fields.Nested(GoodreadSchema, required=False)
+    hardcover = fields.Nested(HardcoverSchema, required=False)
     empty_section = fields.List(fields.Str, required=False)
 
     class Meta:

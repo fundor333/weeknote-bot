@@ -52,5 +52,9 @@
     "shelf_name_label": "Currently Reading",
     "user_id": "5312887-matteo"
   },
+  "hardcover": {
+    "active": false,
+    "section_label": "Books I'm reading"
+  },
   "text_api": "https://appletune.fundor333.com/api/weekdone/?format=json"
 }

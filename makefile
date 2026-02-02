@@ -1,5 +1,7 @@
 SHELL := /bin/bash
 
+RUNNER := uv run --env-file=.env
+
 publish: build ## Publish to pypi
 	@echo "🚀 Publishing project"
 	@$(eval user := $(shell sed -ne 's/username *= *//p' $(HOME)/.pypirc))
@@ -14,7 +16,7 @@ build: clean-build ## Build wheel file
 .PHONY: clean-build
 clean-build: ## Clean build artifacts
 	@echo "🚀 Removing build artifacts"
-	@uv run python -c "import shutil; import os; shutil.rmtree('dist') if os.path.exists('dist') else None"
+	@$(RUNNER) python -c "import shutil; import os; shutil.rmtree('dist') if os.path.exists('dist') else None"
 
 .PHONY: help
 help: ## Show this help
@@ -25,24 +27,24 @@ help: ## Show this help
 install: ## Make venv and install requirements
 	@mkdir -p .venv
 	@uv sync
-	@uv run pre-commit install
+	@$(RUNNER) pre-commit install
 	@pre-commit autoupdate
 
 .PHONY: update
 update: ## Update requirements
 	@uv lock --upgrade
-	@uv sync
-	@uv run pre-commit autoupdate
+	@uv sync --upgrade
+	@$(RUNNER) pre-commit autoupdate
 
 
 .PHONY: run
 run: ## Run the basic command
-	@uv run weeknote -config config_example.json
+	@$(RUNNER) weeknote -config config_example.json
 
 
 .PHONY: run_error
 run_error: ## Run the basic command with an error in the config
-	@uv run weeknote -config dev_config/1201/config_example_error.json
+	@$(RUNNER) weeknote -config dev_config/1201/config_example_error.json
 	@rm -rf dev_config
 
 .PHONY: clean
