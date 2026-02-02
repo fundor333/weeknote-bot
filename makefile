@@ -31,7 +31,7 @@ install: ## Make venv and install requirements
 .PHONY: update
 update: ## Update requirements
 	@uv lock --upgrade
-	@uv sync
+	@uv sync --upgrade
 	@uv run pre-commit autoupdate
 
 
