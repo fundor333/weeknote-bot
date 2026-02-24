@@ -55,29 +55,16 @@ All notable changes to this project will be documented in this file.\n
 # See https://keats.github.io/tera/docs/#introduction
 body = """
 {% if version %}\
-    ## {{ version | trim_start_matches(pat="v") }} - {{ timestamp | date(format="%Y-%m-%d") }}
+    ## [{{ version | trim_start_matches(pat="v") }}] - {{ timestamp | date(format="%Y-%m-%d") }}
 {% else %}\
-    ## Unreleased
+    ## 👨🏻‍💻🧋 Unreleased
 {% endif %}\
-{% for group, commits in commits | group_by(attribute="group") %}
+{% for group, commits in commits | unique(attribute="message") | group_by(attribute="group") %}
     ### {{ group | upper_first }}
     {% for commit in commits %}
         - {{ commit.message | split(pat="\n") | first | upper_first | trim_end }}\
     {% endfor %}
 {% endfor %}
-### Commit Statistics\n
-- {{ statistics.commit_count }} commit(s) contributed to the release.
-- {{ statistics.commits_timespan | default(value=0) }} day(s) passed between the first and last commit.
-- {{ statistics.conventional_commit_count }} commit(s) parsed as conventional.
-- {{ statistics.links | length }} linked issue(s) detected in commits.
-{%- if statistics.links | length > 0 %}
-	{%- for link in statistics.links %}
-        {{ "  " }}- [{{ link.text }}]({{ link.href }}) (referenced {{ link.count }} time(s))
-	{%- endfor %}
-{%- endif %}
-{%- if statistics.days_passed_since_last_release %}
-	- {{ statistics.days_passed_since_last_release }} day(s) passed between releases.
-{%- endif %}\n\n
 """
 # A Tera template to be rendered as the changelog's footer.
 # See https://keats.github.io/tera/docs/#introduction
@@ -91,21 +78,23 @@ trim = true
 # Parse commits according to the conventional commits specification.
 # See https://www.conventionalcommits.org
 conventional_commits = true
-# Exclude commits that do not match the conventional commits specification.
 commit_parsers = [
-  {message = "^feat", group = "<!-- 0 -->Features"},
-  {message = "^fix", group = "<!-- 3 -->Bug Fixes"},
-  {message = "^doc", group = "<!-- 1 -->Documentation"},
-  {message = "^perf", group = "<!-- 2 -->Performance"},
-  {message = "^refactor", group = "<!-- 5 -->Refactor"},
-  {message = "^style", group = "<!-- 6 -->Styling"},
-  {message = "^test", group = "<!-- 7 -->Testing"},
+  {body = "^v?\\d+\\.\\d+\\.\\d+$", skip = true},
+  {message = "^Merge '[^']+' into 'master'", skip = true},
+  {message = "^Format code with Black", skip = true},
   {message = "^chore\\(release\\): prepare for", skip = true},
-  {message = "^chore", group = "<!-- 8 -->Miscellaneous Tasks"},
-  {body = ".*security", group = "<!-- 4 -->Security"},
-  {body = ".*", group = "<!-- 9 -->Other (unconventional)"},
-  {message = "^Merge '[^']+' into 'master'", skip = true}
-] # An array of regex based parsers for extracting data from the commit message.filter_unconventional = false
+  {message = "^feat", group = "🚀 Features"},
+  {message = "^fix", group = "🐛 Bug Fixes"},
+  {message = "^doc", group = "📝 Docs"},
+  {message = "^perf", group = "🧰 Improvements"},
+  {message = "^refactor", group = "🧰 Improvements"},
+  {message = "^style", group = "💄 Style"},
+  {message = "^test", group = "🧪 Testing"},
+  {message = "^chore", group = "Miscellaneous Tasks"},
+  {body = ".*security", group = "🔒 Security"},
+  {body = ".*", group = "❓ Other (unconventional)"}
+]
+# An array of regex based parsers for extracting data from the commit message.filter_unconventional = false
 # Assigns commits to groups.
 # Optionally sets the commit's scope and can decide to exclude commits from further processing.
 # Exclude commits that are not matched by any commit parser.
@@ -115,18 +104,3 @@ topo_order = false
 # Order of commits in each group/release within the changelog.
 # Allowed values: newest, oldest
 sort_commits = "oldest"
-
-[tool.hatch.build.targets.sdist]
-include = ["weeknotebot"]
-
-[tool.hatch.build.targets.wheel]
-include = ["weeknotebot"]
-
-[tool.isort]
-profile = "black"
-
-[[tool.uv.index]]
-name = "weeknotebot"
-url = "https://test.pypi.org/simple/"
-publish-url = "https://test.pypi.org/legacy/"
-explicit = true
