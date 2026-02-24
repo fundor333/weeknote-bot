@@ -83,3 +83,11 @@ deploy: update  ## Deploy for production
 
 precommit: ## Run pre-commit hooks
 	@git add . & uv run pre-commit run --all-files
+
+
+.PHONY: changelog ## update CHANGELOG.md and amend it on the commit
+changelog:
+	git-cliff --config pyproject.toml --output CHANGELOG.md
+	sed -i 's/<!-- [0-9]* -->//g' CHANGELOG.md
+	git add CHANGELOG.md
+	git commit --amend --no-edit
