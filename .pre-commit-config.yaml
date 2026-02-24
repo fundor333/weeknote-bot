@@ -16,12 +16,12 @@ repos:
       hooks:
           - id: reorder-python-imports
     - repo: https://github.com/adamchainz/djade-pre-commit
-      rev: "1.7.0" # Replace with the latest tag on GitHub
+      rev: "1.8.0" # Replace with the latest tag on GitHub
       hooks:
           - id: djade
             args: [--target-version, "4.2"] # Replace with Django version
     - repo: https://github.com/PyCQA/autoflake
-      rev: v2.3.1
+      rev: v2.3.3
       hooks:
           - id: autoflake
             args: [--remove-all-unused-imports, --in-place]
