@@ -61,7 +61,20 @@ def get_anilist_row(user_id: str) -> str:
 
     data = req.json()
 
-    stats = data["data"]["User"]["statistics"]
+    if data.get("errors"):
+        log.warning(
+            "AniList API returned errors for user '%s': %s",
+            user_id,
+            data["errors"],
+        )
+        return ""
+
+    user = (data.get("data") or {}).get("User")
+    if user is None:
+        log.warning("AniList API returned no data for user '%s'", user_id)
+        return ""
+
+    stats = user["statistics"]
     anime = stats["anime"]
     manga = stats["manga"]
 

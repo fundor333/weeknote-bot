@@ -7,7 +7,7 @@ dev = ["pre-commit>=4.5.1", "pylint>=4.0.4"]
 
 [project]
 name = "WeeknoteBot"
-version = "1.10.0"
+version = "1.11.0"
 description = "A bot for generate WeekNote for Hugo"
 authors = [{name = "Fundor333", email = "github@fundor333.com"}]
 requires-python = ">=3.10"
